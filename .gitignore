@@ -1,0 +1,7 @@
+# Terraform lock and state files.
+*.lock.hcl
+*.tfstate
+*.tfstate.backup
+
+# Development environment variables.
+.env
