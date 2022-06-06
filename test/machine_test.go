@@ -23,9 +23,10 @@ func TestMachineExample(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	sshIP := terraform.Output(t, terraformOptions, "ssh_ip")
+	sshUser := terraform.Output(t, terraformOptions, "ssh_user")
 	ssh.CheckSshConnection(t, ssh.Host{
 		Hostname:    sshIP,
-		SshUserName: "example",
+		SshUserName: sshUser,
 		SshKeyPair:  sshKeyPair,
 		CustomPort:  2222,
 	})

@@ -19,7 +19,5 @@ module "example_machine" {
   cores = 2
   disk_pool = "local-lvm"
   disk_size = "10G"
-  cloud_init_user = "example"
-  cloud_init_password = "example"
   cloud_init_public_keys = var.cloud_init_public_keys
 }

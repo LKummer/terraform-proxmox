@@ -1,3 +1,11 @@
+resource "random_pet" "cloud_init_user" {
+  length = 2
+}
+
+resource "random_password" "cloud_init_password" {
+  length = 24
+}
+
 resource "proxmox_vm_qemu" "machine" {
   vmid = var.id
   name = var.name
@@ -26,7 +34,7 @@ resource "proxmox_vm_qemu" "machine" {
   boot = "c"
 
   os_type = "cloud-init"
-  ciuser = var.cloud_init_user
-  cipassword = var.cloud_init_password
+  ciuser = random_pet.cloud_init_user.id
+  cipassword = random_password.cloud_init_password.result
   sshkeys = var.cloud_init_public_keys
 }
