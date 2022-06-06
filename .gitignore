@@ -2,6 +2,7 @@
 *.lock.hcl
 *.tfstate
 *.tfstate.backup
+.terraform
 
 # Development environment variables.
 .env
