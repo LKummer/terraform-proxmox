@@ -3,7 +3,7 @@ resource "random_pet" "cloud_init_user" {
 }
 
 resource "random_password" "cloud_init_password" {
-  length = 24
+  length = 64
 }
 
 resource "proxmox_vm_qemu" "machine" {
