@@ -12,8 +12,8 @@ terraform init
 
 Change `example.tfvars` variables to match your Proxmox URL and node.
 
-Set `PM_USER` and `PM_PASS` environment variables with your Proxmox username and password.
-Note the username *must* contain the realm, for example `root@pam`.
+Set `PM_API_TOKEN_ID` and `PM_API_TOKEN_SECRET` environment variables with your Proxmox token ID and secret token.
+Note the token ID *must* contain the username and realm, for example `root@pam!token`.
 
 Apply the module:
 
@@ -25,4 +25,17 @@ Destroy the provisioned resources:
 
 ```
 terraform destroy
+```
+
+## Managing Credentials
+
+[See Proxmox Terraform provider documentation](https://registry.terraform.io/providers/Telmate/proxmox/latest/docs#creating-the-proxmox-user-and-role-for-terraform) on creating a role with privileges for Terraform.
+
+It is recommended to use a `.env` file to manage credentials.
+For example:
+
+```bash
+# Inside .env
+export PM_API_TOKEN_ID='user@pve!token'
+export PM_API_TOKEN_SECRET='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
