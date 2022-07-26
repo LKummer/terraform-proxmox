@@ -12,7 +12,6 @@ module "example_machine" {
   proxmox_target_node = var.proxmox_target_node
   proxmox_template = "Alpine-3.16.0-2537c0e0"
 
-  id = 10001
   name = "example-machine"
   on_boot = true
   memory = 2048

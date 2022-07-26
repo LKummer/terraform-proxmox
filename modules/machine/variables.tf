@@ -20,8 +20,9 @@ variable "full_clone" {
 }
 
 variable "id" {
-  description = "ID of the created machine."
+  description = "ID of the created machine. Uses next available ID when empty."
   type = number
+  default = null
 }
 
 variable "name" {
