@@ -1,0 +1,23 @@
+stages:
+  - test
+
+# Requires PM_API_TOKEN_ID, PM_API_TOKEN_SECRET variables.
+test-terraform:
+  stage: test
+  image: golang:1.18.2
+  script:
+    - apt update
+    - apt install unzip
+    - wget -O /tmp/terraform.zip https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip
+    - unzip /tmp/terraform.zip
+    - mv terraform /usr/local/bin
+    - wget -O /tmp/gotestsum.tar.gz https://github.com/gotestyourself/gotestsum/releases/download/v1.8.1/gotestsum_1.8.1_linux_amd64.tar.gz
+    - tar -xzf /tmp/gotestsum.tar.gz
+    - mv gotestsum /usr/local/bin
+    - cd test
+    # Use gotestsum to generate a JUnit-like report.
+    - gotestsum --junitfile report.xml --format testname
+  artifacts:
+    when: always
+    reports:
+      junit: test/report.xml
