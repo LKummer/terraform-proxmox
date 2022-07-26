@@ -55,6 +55,15 @@ tflint --module modules/machine
 tflint examples/machine
 ```
 
+### Formatting
+
+Formatting is checked in CI.
+Make sure to format code before pushing.
+
+```
+terraform fmt -recursive .
+```
+
 ## Contribution
 
 This module is built for my own needs and is not made for public consumption.

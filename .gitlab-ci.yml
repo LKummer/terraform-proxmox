@@ -28,3 +28,9 @@ lint-terraform:
   script:
     - tflint --module modules/machine
     - tflint examples/machine
+
+format-terraform:
+  stage: test
+  image: docker.houseofkummer.com/homelab/dockops:0.6.0
+  script:
+    - terraform fmt -check -recursive .
