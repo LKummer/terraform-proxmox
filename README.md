@@ -45,6 +45,16 @@ export PM_API_TOKEN_ID='user@pve!token'
 export PM_API_TOKEN_SECRET='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
+### Linting
+
+The repository is linted in CI.
+Make sure to lint before pushing.
+
+```
+tflint --module modules/machine
+tflint examples/machine
+```
+
 ## Contribution
 
 This module is built for my own needs and is not made for public consumption.

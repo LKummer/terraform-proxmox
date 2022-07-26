@@ -21,3 +21,10 @@ test-terraform:
     when: always
     reports:
       junit: test/report.xml
+
+lint-terraform:
+  stage: test
+  image: ghcr.io/terraform-linters/tflint:v0.38.1
+  script:
+    - tflint --module modules/machine
+    - tflint examples/machine
