@@ -1,9 +1,27 @@
 stages:
   - test
 
+format-test:
+  image: golang:1.18.2
+  script:
+    - export GOFMT_OUTPUT="$(gofmt -l test)"
+    - echo "$GOFMT_OUTPUT"
+    - '[ $(echo -n $GOFMT_OUTPUT | wc -l) -eq 0 ]'
+
+lint-test:
+  image: golang:1.18.2
+  script:
+    - cd test
+    # Install golangci-lint.
+    - wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.45.2
+    - bin/golangci-lint run
+
 # Requires PM_API_TOKEN_ID, PM_API_TOKEN_SECRET variables.
 test-terraform:
   stage: test
+  needs:
+    - format-test
+    - lint-test
   image: golang:1.18.2
   script:
     - apt update

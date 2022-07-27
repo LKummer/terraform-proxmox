@@ -64,6 +64,26 @@ Make sure to format code before pushing.
 terraform fmt -recursive .
 ```
 
+### Linting the Tests
+
+The tests are linted in CI.
+Make sure to lint before pushing.
+
+```
+cd test
+golangci-lint run
+```
+
+### Formatting the Tests
+
+Test formatting is checked in CI.
+Make sure to format the tests before pushing.
+
+```
+cd test
+gofmt -w .
+```
+
 ## Contribution
 
 This module is built for my own needs and is not made for public consumption.

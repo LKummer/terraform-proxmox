@@ -6,7 +6,6 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 
-	"github.com/gruntwork-io/terratest/modules/logger"
 	tgssh "github.com/gruntwork-io/terratest/modules/ssh"
 	"github.com/gruntwork-io/terratest/modules/testing"
 	"golang.org/x/crypto/ssh"
@@ -26,7 +25,6 @@ func generateED25519KeyPair(t testing.TestingT) *tgssh.KeyPair {
 // It is inspired by the existing GenerateRSAKeyPair from Terratest.
 // See https://github.com/gruntwork-io/terratest/blob/v0.40.12/modules/ssh/key_pair.go
 func generateED25519KeyPairE(t testing.TestingT) (*tgssh.KeyPair, error) {
-	logger.Logf(t, "Generating new ED25519 key pair.")
 	publicKey, privateKey, err := ed25519.GenerateKey(rand.Reader)
 	if err != nil {
 		return nil, err
