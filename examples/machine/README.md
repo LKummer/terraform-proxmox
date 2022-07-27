@@ -10,7 +10,7 @@ Initialized the module:
 terraform init
 ```
 
-Change `example.tfvars` variables to match your Proxmox URL and node.
+Change `terraform.tfvars` variables to match your Proxmox URL and node.
 
 Set `PM_API_TOKEN_ID` and `PM_API_TOKEN_SECRET` environment variables with your Proxmox token ID and secret token.
 Note the token ID *must* contain the username and realm, for example `root@pam!token`.
@@ -18,7 +18,7 @@ Note the token ID *must* contain the username and realm, for example `root@pam!t
 Apply the module:
 
 ```
-terraform apply -var-file example.tfvars
+terraform apply
 ```
 
 Destroy the provisioned resources:

@@ -12,7 +12,6 @@ func TestMachineExample(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../examples/machine",
-		VarFiles:     []string{"example.tfvars"},
 		Vars: map[string]interface{}{
 			"cloud_init_public_keys": sshKeyPair.PublicKey,
 		},
