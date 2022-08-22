@@ -13,6 +13,7 @@ module "example_machine" {
   proxmox_template    = "Alpine-3.16.0-2537c0e0"
 
   name                   = "example-machine"
+  description            = "Example machine description."
   on_boot                = true
   memory                 = 2048
   cores                  = 2

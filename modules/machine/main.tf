@@ -9,6 +9,7 @@ resource "random_password" "cloud_init_password" {
 resource "proxmox_vm_qemu" "machine" {
   vmid        = var.id
   name        = var.name
+  desc        = var.description
   target_node = var.proxmox_target_node
   clone       = var.proxmox_template
   full_clone  = var.full_clone

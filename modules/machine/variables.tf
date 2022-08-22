@@ -30,6 +30,16 @@ variable "name" {
   type        = string
 }
 
+variable "description" {
+  description = "Description of the created machine."
+  type        = string
+
+  validation {
+    condition     = 0 < length(var.description)
+    error_message = "The argument \"description\" must not be empty to avoid state mismatch when cloning a template with description."
+  }
+}
+
 variable "on_boot" {
   description = "Machine is started up on boot when true."
   type        = bool
