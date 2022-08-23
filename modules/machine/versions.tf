@@ -4,11 +4,11 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "2.9.10"
+      version = "2.9.11"
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.3.0"
+      version = "3.3.2"
     }
   }
 }
