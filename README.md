@@ -36,6 +36,8 @@ Note it takes a while as it provisions real resources.
 
 [See Proxmox Terraform provider documentation](https://registry.terraform.io/providers/Telmate/proxmox/latest/docs#creating-the-proxmox-user-and-role-for-terraform) on creating a role with privileges for Terraform.
 
+For instructions on creating a role with correct privileges and creating an API token, [check out this guide on the wiki](https://homelab.pages.houseofkummer.com/wiki/administrate/proxmox-api-tokens/).
+
 It is recommended to use a `.env` file to manage credentials.
 For example:
 
@@ -86,9 +88,10 @@ gofmt -w .
 
 ## Contribution
 
-This module is built for my own needs and is not made for public consumption.
-It likely will not suit your needs perfectly.
+This repository is built for my own needs, not for generic use.
+Adding features for public consumption will make it needlessly complex.
+Please learn from it and make your own modules instead of contributing new features.
 
-Please learn from it and make your own modules instead of modifying it to fit your needs.
+Please open an issue before working on pull requests. 
 
 This repository is mirroring a private repository, changes to the mirror will be overridden.
