@@ -5,7 +5,7 @@ terraform {
 module "example_machine" {
   # When using these modules in your own templates, you will need to use a Git source
   # with an attribute to pin the module's version.
-  # source = "github.com/LKummer/terraform-proxmox//modules/machine?ref=v0.1.0"
+  # source = "github.com/LKummer/terraform-proxmox//modules/machine?ref=1.0.0"
   source = "../../modules/machine"
 
   proxmox_api_url     = var.proxmox_api_url
