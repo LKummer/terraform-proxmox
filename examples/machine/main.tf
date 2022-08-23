@@ -10,7 +10,7 @@ module "example_machine" {
 
   proxmox_api_url     = var.proxmox_api_url
   proxmox_target_node = var.proxmox_target_node
-  proxmox_template    = "Alpine-3.16.0-2537c0e0"
+  proxmox_template    = "alpine-3.16.2-1"
 
   name                   = "example-machine"
   description            = "Example machine description."
