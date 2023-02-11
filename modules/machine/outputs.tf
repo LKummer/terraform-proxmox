@@ -1,5 +1,5 @@
 output "id" {
-  value       = proxmox_vm_qemu.machine.vmid
+  value       = regex("\\d*$", proxmox_vm_qemu.machine.id)
   description = "Proxmox virtual machine ID."
 }
 
