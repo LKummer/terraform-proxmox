@@ -1,4 +1,9 @@
-output "ssh_ip" {
+output "id" {
+  value       = proxmox_vm_qemu.machine.vmid
+  description = "Proxmox virtual machine ID."
+}
+
+output "ip" {
   value       = proxmox_vm_qemu.machine.ssh_host
   description = "IP of the created virtual machine."
 }
