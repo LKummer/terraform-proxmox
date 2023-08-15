@@ -19,7 +19,7 @@ func TestMachineExample(t *testing.T) {
 
 	defer terraform.Destroy(t, terraformOptions)
 
-	terraform.InitAndApply(t, terraformOptions)
+	terraform.InitAndApplyAndIdempotent(t, terraformOptions)
 
 	sshIP := terraform.Output(t, terraformOptions, "ssh_ip")
 	sshUser := terraform.Output(t, terraformOptions, "ssh_user")
