@@ -38,4 +38,5 @@ resource "proxmox_vm_qemu" "machine" {
   ciuser     = random_pet.cloud_init_user.id
   cipassword = random_password.cloud_init_password.result
   sshkeys    = var.cloud_init_public_keys
+  ipconfig0  = "ip=dhcp"
 }
