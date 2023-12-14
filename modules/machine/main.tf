@@ -18,7 +18,6 @@ resource "proxmox_virtual_environment_vm" "machine" {
   vm_id     = var.id
 
   on_boot = var.on_boot
-  # scsi_hardware = "virtio-scsi-pci"
 
   agent {
     enabled = true
@@ -60,8 +59,6 @@ resource "proxmox_virtual_environment_vm" "machine" {
   }
 
   network_device {
-    # TODO remove default
-    bridge      = "vmbr0"
     mac_address = var.mac_address
   }
 
