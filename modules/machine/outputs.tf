@@ -1,10 +1,10 @@
 output "id" {
-  value       = regex("\\d*$", proxmox_vm_qemu.machine.id)
+  value       = proxmox_virtual_environment_vm.machine.vm_id
   description = "Proxmox virtual machine ID."
 }
 
 output "ip" {
-  value       = proxmox_vm_qemu.machine.ssh_host
+  value       = one(setsubtract(flatten(proxmox_virtual_environment_vm.machine.ipv4_addresses), ["127.0.0.1"]))
   description = "IP of the created virtual machine."
 }
 

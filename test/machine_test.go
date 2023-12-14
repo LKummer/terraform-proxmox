@@ -27,6 +27,6 @@ func TestMachineExample(t *testing.T) {
 		Hostname:    sshIP,
 		SshUserName: sshUser,
 		SshKeyPair:  sshKeyPair,
-		CustomPort:  2222,
+		CustomPort:  22,
 	})
 }

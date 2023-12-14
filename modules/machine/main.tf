@@ -6,37 +6,67 @@ resource "random_password" "cloud_init_password" {
   length = 64
 }
 
-resource "proxmox_vm_qemu" "machine" {
-  vmid        = var.id
+data "proxmox_virtual_environment_vms" "all" {
+  node_name = var.proxmox_target_node
+}
+
+resource "proxmox_virtual_environment_vm" "machine" {
   name        = var.name
-  desc        = var.description
-  target_node = var.proxmox_target_node
-  clone       = var.proxmox_template
-  full_clone  = var.full_clone
+  description = var.description
 
-  onboot = var.on_boot
-  memory = var.memory
-  cores  = var.cores
-  scsihw = "virtio-scsi-pci"
-  agent  = 1
+  node_name = var.proxmox_target_node
+  vm_id     = var.id
 
-  network {
-    model   = "virtio"
-    macaddr = var.mac_address
-    bridge  = "vmbr0"
+  on_boot = var.on_boot
+  # scsi_hardware = "virtio-scsi-pci"
+
+  agent {
+    enabled = true
+  }
+
+  clone {
+    vm_id = one(coalescelist([for vm in data.proxmox_virtual_environment_vms.all.vms : vm.name == var.proxmox_template ? [vm] : []]...)).vm_id
+  }
+
+  startup {
+    order = "10"
   }
 
   disk {
-    type    = "scsi"
-    storage = var.disk_pool
-    size    = var.disk_size
+    datastore_id = var.disk_pool
+    file_format  = "raw"
+    interface    = "scsi0"
+    size         = var.disk_size
   }
-  bootdisk = "scsi0"
-  boot     = "c"
 
-  os_type    = "cloud-init"
-  ciuser     = random_pet.cloud_init_user.id
-  cipassword = random_password.cloud_init_password.result
-  sshkeys    = var.cloud_init_public_keys
-  ipconfig0  = "ip=dhcp"
+  cpu {
+    cores = var.cores
+  }
+
+  memory {
+    dedicated = var.memory
+  }
+
+  initialization {
+    ip_config {
+      ipv4 {
+        address = "dhcp"
+      }
+    }
+    user_account {
+      keys     = [trimspace(var.cloud_init_public_keys)]
+      password = random_password.cloud_init_password.result
+      username = random_pet.cloud_init_user.id
+    }
+  }
+
+  network_device {
+    # TODO remove default
+    bridge      = "vmbr0"
+    mac_address = var.mac_address
+  }
+
+  operating_system {
+    type = "l26"
+  }
 }

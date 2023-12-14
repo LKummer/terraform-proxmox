@@ -13,12 +13,6 @@ variable "proxmox_template" {
   type        = string
 }
 
-variable "full_clone" {
-  description = "Creates linked clone when false, full clone when true."
-  type        = bool
-  default     = false
-}
-
 variable "id" {
   description = "ID of the created machine. Uses next available ID when empty."
   type        = number
@@ -67,8 +61,8 @@ variable "disk_pool" {
 }
 
 variable "disk_size" {
-  description = "Disk size to use. For example '25G'."
-  type        = string
+  description = "Disk size to use in GB."
+  type        = number
 }
 
 variable "cloud_init_public_keys" {
