@@ -34,7 +34,6 @@ resource "proxmox_virtual_environment_vm" "machine" {
 
   disk {
     datastore_id = var.disk_pool
-    file_format  = "raw"
     interface    = "scsi0"
     size         = var.disk_size
   }
