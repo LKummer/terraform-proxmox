@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_vm" "machine" {
   name        = var.name
   description = var.description
 
-  node_name = var.proxmox_target_node
+  node_name = var.proxmox_target_node != null ? var.proxmox_target_node : one(coalescelist([for vm in data.proxmox_virtual_environment_vms.all.vms : vm.name == var.proxmox_template ? [vm] : []]...)).node_name
   vm_id     = var.id
 
   on_boot = var.on_boot

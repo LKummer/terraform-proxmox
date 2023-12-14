@@ -3,11 +3,6 @@ variable "proxmox_api_url" {
   type        = string
 }
 
-variable "proxmox_target_node" {
-  description = "Proxmox node the machine will be created on."
-  type        = string
-}
-
 variable "cloud_init_public_keys" {
   description = "SSH public keys to add with Cloud Init."
   type        = string

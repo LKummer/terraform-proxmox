@@ -8,9 +8,8 @@ module "example_machine" {
   # source = "github.com/LKummer/terraform-proxmox//modules/machine?ref=1.0.0"
   source = "../../modules/machine"
 
-  proxmox_api_url     = var.proxmox_api_url
-  proxmox_target_node = var.proxmox_target_node
-  proxmox_template    = "debian-12.4.0-1"
+  proxmox_api_url  = var.proxmox_api_url
+  proxmox_template = "debian-12.4.0-1"
 
   name                   = "example-machine"
   description            = "Example machine description."

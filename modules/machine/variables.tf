@@ -6,6 +6,7 @@ variable "proxmox_api_url" {
 variable "proxmox_target_node" {
   description = "Proxmox node the machine will be created on."
   type        = string
+  default     = null
 }
 
 variable "proxmox_template" {
