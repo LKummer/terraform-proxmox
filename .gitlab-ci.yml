@@ -1,6 +1,10 @@
 stages:
   - test
 
+variables:
+  TF_VERSION: 1.6.5
+  GOTESTSUM_VERSION: 1.11.0
+
 format:test:
   image: golang:1.21.4-bookworm
   script:
@@ -12,7 +16,7 @@ lint:test:
   image: golangci/golangci-lint:v1.55.2
   script:
     - cd test
-    - golangci-lint run ./...
+    - golangci-lint run --timeout=5m ./...
 
 # Requires PROXMOX_VE_API_TOKEN variables of the form:
 #   user@realm!token=secret
@@ -21,9 +25,6 @@ lint:test:
 test:terraform:
   stage: test
   image: golang:1.21.4-bookworm
-  variables:
-    TF_VERSION: 1.6.5
-    GOTESTSUM_VERSION: 1.11.0
   before_script:
     - apt-get update
     - apt-get install --yes unzip
@@ -39,13 +40,12 @@ lint:terraform:
   image: ghcr.io/terraform-linters/tflint:v0.49.0
   script:
     - tflint --chdir=modules/machine
-    - tflint --chdir=examples/machine
+    - tflint --chdir=examples/debian-machine
+    - tflint --chdir=examples/alpine-machine
 
 format:terraform:
   stage: test
   image: debian:bookworm-slim
-  variables:
-    TF_VERSION: 1.6.5
   before_script:
     - apt-get update
     - apt-get install --yes wget unzip

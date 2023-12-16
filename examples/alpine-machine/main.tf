@@ -9,14 +9,14 @@ module "example_machine" {
   source = "../../modules/machine"
 
   proxmox_api_url  = var.proxmox_api_url
-  proxmox_template = "debian-12.4.0-1"
+  proxmox_template = "alpine-3.18.5-2"
 
-  name                   = "example-machine"
+  name                   = "example-alpine-machine"
   description            = "Example machine description."
   on_boot                = true
   memory                 = 2048
   cores                  = 2
   disk_pool              = "local-lvm"
-  disk_size              = 10
+  disk_size              = 15
   cloud_init_public_keys = var.cloud_init_public_keys
 }

@@ -33,7 +33,9 @@ resource "proxmox_virtual_environment_vm" "machine" {
 
   disk {
     datastore_id = var.disk_pool
+    discard      = "ignore"
     interface    = "scsi0"
+    iothread     = true
     size         = var.disk_size
   }
 
