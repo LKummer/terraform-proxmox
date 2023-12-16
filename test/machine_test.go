@@ -13,7 +13,7 @@ func TestDebianMachineExample(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../examples/debian-machine",
 		Vars: map[string]interface{}{
-			"cloud_init_public_keys": sshKeyPair.PublicKey,
+			"authorized_key": sshKeyPair.PublicKey,
 		},
 	})
 
@@ -37,7 +37,7 @@ func TestAlpineMachineExample(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../examples/alpine-machine",
 		Vars: map[string]interface{}{
-			"cloud_init_public_keys": sshKeyPair.PublicKey,
+			"authorized_key": sshKeyPair.PublicKey,
 		},
 	})
 

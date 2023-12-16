@@ -54,7 +54,8 @@ resource "proxmox_virtual_environment_vm" "machine" {
       }
     }
     user_account {
-      keys     = [trimspace(var.cloud_init_public_keys)]
+      keys = [for key in var.authorized_keys : trimspace(key)]
+
       password = random_password.cloud_init_password.result
       username = random_pet.cloud_init_user.id
     }

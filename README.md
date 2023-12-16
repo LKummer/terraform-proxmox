@@ -21,7 +21,7 @@ Note you must have a Proxmox template with Cloud Init to use the `machine` modul
 ### Running Tests
 
 Set `PM_API_TOKEN_ID` and `PM_API_TOKEN_SECRET` environment variables with your Proxmox token ID and secret token.
-Note the token ID *must* contain the username and realm, for example `root@pam!token`.
+Note the token ID _must_ contain the username and realm, for example `root@pam!token`.
 
 To run tests:
 
@@ -43,8 +43,7 @@ For example:
 
 ```bash
 # Inside .env
-export PM_API_TOKEN_ID='user@pve!token'
-export PM_API_TOKEN_SECRET='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+export PROXMOX_VE_API_TOKEN='user@pve!token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
 ### Linting
@@ -54,7 +53,8 @@ Make sure to lint before pushing.
 
 ```
 tflint --module modules/machine
-tflint examples/machine
+tflint examples/alpine-machine
+tflint examples/debian-machine
 ```
 
 ### Formatting
@@ -92,6 +92,6 @@ This repository is built for my own needs, not for generic use.
 Adding features for public consumption will make it needlessly complex.
 Please learn from it and make your own modules instead of contributing new features.
 
-Please open an issue before working on pull requests. 
+Please open an issue before working on pull requests.
 
 This repository is mirroring a private repository, changes to the mirror will be overridden.
