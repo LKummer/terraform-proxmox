@@ -4,7 +4,7 @@ output "id" {
 }
 
 output "ip" {
-  value       = one(setsubtract(flatten(proxmox_virtual_environment_vm.machine.ipv4_addresses), ["127.0.0.1"]))
+  value       = one([for a in flatten(proxmox_virtual_environment_vm.machine.ipv4_addresses) : a if substr(a, 0, 8) == "192.168."])
   description = "IP of the created virtual machine."
 }
 
